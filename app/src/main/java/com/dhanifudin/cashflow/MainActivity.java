@@ -49,7 +49,6 @@ public class MainActivity extends AppCompatActivity implements TransactionAdapte
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // TODO: Tambahkan event click fab di sini
                 Intent intent = new Intent(MainActivity.this, SaveActivity.class);
                 intent.putExtra(TRANSACTION_KEY, new Transaction());
                 startActivityForResult(intent, INSERT_REQUEST);
