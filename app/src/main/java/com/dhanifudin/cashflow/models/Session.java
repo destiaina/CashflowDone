@@ -36,7 +36,7 @@ public class Session {
     }
 
     public boolean validate(String username, String password) {
-        if (username.equals("admin") && password.equals("rahasia")) {
+        if (username.equals("admin") && password.equals("ina")) {
             setSession(username);
             return true;
         }

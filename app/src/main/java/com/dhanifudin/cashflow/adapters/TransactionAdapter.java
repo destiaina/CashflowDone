@@ -12,7 +12,6 @@ import java.text.NumberFormat;
 import java.util.List;
 import java.util.Locale;
 
-
 public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.ViewHolder> {
     private List<Transaction> items;
     private OnItemTransactionListener listener;

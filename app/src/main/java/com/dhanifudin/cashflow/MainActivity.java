@@ -2,11 +2,11 @@ package com.dhanifudin.cashflow;
 
 import android.content.Intent;
 import android.os.Bundle;
-import com.dhanifudin.cashflow.adapters.TransactionAdapter;
-import com.dhanifudin.cashflow.models.Account;
-import com.dhanifudin.cashflow.models.Session;
-import com.dhanifudin.cashflow.models.Transaction;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,10 +14,13 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.TextView;
+
+import com.dhanifudin.cashflow.adapters.TransactionAdapter;
+import com.dhanifudin.cashflow.models.Account;
+import com.dhanifudin.cashflow.models.Session;
+import com.dhanifudin.cashflow.models.Transaction;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import java.text.NumberFormat;
 import java.util.Locale;
 
@@ -71,7 +74,7 @@ public class MainActivity extends AppCompatActivity implements TransactionAdapte
         });
 
         account = Application.getAccount();
-        welcomeText.setText(String.format("Welcome %s", account.getName()));
+        welcomeText.setText(String.format(" Welcome %s", account.getName()));
         balanceText.setText(formatRupiah.format((double)account.getBalance()));
         adapter = new TransactionAdapter(account.getTransactions(), this);
         transactionsView.setAdapter(adapter);
