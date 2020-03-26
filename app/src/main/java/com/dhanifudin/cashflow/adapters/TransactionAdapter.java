@@ -4,19 +4,24 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.dhanifudin.cashflow.R;
 import com.dhanifudin.cashflow.models.Transaction;
-
+import java.text.NumberFormat;
 import java.util.List;
+import java.util.Locale;
 
-public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.ViewHolder>{
 
+public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.ViewHolder> {
     private List<Transaction> items;
     private OnItemTransactionListener listener;
+    Locale localeID= new Locale("in", "ID");
+    NumberFormat formatRupiah=NumberFormat.getCurrencyInstance(localeID);
+
+    public interface OnItemTransactionListener {
+        void onTransactionClicked(int index, Transaction item);
+    }
 
     public TransactionAdapter(List<Transaction> items, OnItemTransactionListener listener) {
         this.items = items;
@@ -42,24 +47,25 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         return (items != null) ? items.size() : 0;
     }
 
-    public interface OnItemTransactionListener {
-        void onTransactionClicked(int index, Transaction item);
-    }
-
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView descriptionText;
         TextView amountText;
+        TextView tipeText;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             descriptionText = itemView.findViewById(R.id.text_description);
             amountText = itemView.findViewById(R.id.text_amount);
+            tipeText=itemView.findViewById(R.id.text_type);
         }
+
         public void bind(final int index, final Transaction item) {
             descriptionText.setText(item.getDescription());
-            amountText.setText(String.valueOf(item.getAmount()));
-            // TODO: Tambahkan interaksi click di sini
+            amountText.setText(formatRupiah.format((double)item.getAmount()));
+            tipeText.setText(String.valueOf(item.getType()));
+           // TODO: Tambahkan interaksi click di sini
             itemView.setOnClickListener(new View.OnClickListener() {
+
                 @Override
                 public void onClick(View v) {
                     listener.onTransactionClicked(index, item);
